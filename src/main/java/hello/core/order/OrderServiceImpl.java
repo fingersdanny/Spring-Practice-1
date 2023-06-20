@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderServiceImpl implements OrderService{
 
+
+    //불변하는 객체를 바꾸는 Method 조차 만들지 말아야한다.
+    //처음부터 불변으로 해놔야지 아니면 나중에 수정하기 힘들어진다.
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
