@@ -3,10 +3,13 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
+// 필수값 (final)이 필요한 객체에게 생성자를 만들어줌
 public class OrderServiceImpl implements OrderService{
 
 
@@ -22,12 +25,6 @@ public class OrderServiceImpl implements OrderService{
     //생성자가 단 1개 있으면 Autowired 없어도 자동으로 주입해준다.
     //생성자 주입은 OrderServiceImpl 불러올때 생성자를 불러온다.
     //new OrderServiceImpl(memberRepository, discountPolicy);
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy){
-        System.out.println("1. OrderServiceImpl.OrderServiceImpl");
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
