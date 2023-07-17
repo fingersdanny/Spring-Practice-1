@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-// 필수값 (final)이 필요한 객체에게 생성자를 만들어줌
+// 필수값 (final)이 필요한 객체에게 생성자를 만들어줌 (compile 시점에 추가한다)
 public class OrderServiceImpl implements OrderService{
 
 
