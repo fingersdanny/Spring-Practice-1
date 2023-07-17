@@ -5,10 +5,10 @@ import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 // 필수값 (final)이 필요한 객체에게 생성자를 만들어줌 (compile 시점에 추가한다)
 public class OrderServiceImpl implements OrderService{
 
@@ -17,6 +17,12 @@ public class OrderServiceImpl implements OrderService{
     //처음부터 불변으로 해놔야지 아니면 나중에 수정하기 힘들어진다.
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
+
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     // 스프링 라이프사이클
     // 1. 스프링 빈 생성
